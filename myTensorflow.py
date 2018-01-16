@@ -112,6 +112,10 @@ with tf.Session(config=tf.ConfigProto(gpu_options=gpu_options, allow_soft_placem
 		train_acc = sess.run(accuracy,feed_dict={x: batch_x, y: batch_y})
 		print("Epoch:", (epoch + 1), "cost =", "{:.3f}".format(avg_cost), " training accuracy: {:.3f}".format(train_acc))
 		#train_accuracy = accuracy.eval(feed_dict={x: batch_x, y_: batch_y})
+
+	print("\nTraining complete!")
+	test_x, test_y = mnist.test.next_batch(batch_size=batch_size)
+	print(sess.run(accuracy, feed_dict={x: test_x, y: test_y}))
 '''
 		test_acc = sess.run(accuracy,
 					   feed_dict={x: mnist.test.images, y: mnist.test.labels})
